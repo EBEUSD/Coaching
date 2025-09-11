@@ -1,0 +1,46 @@
+.card {
+  background: #1a1a1d;
+  border: 1px solid #2a2a2e;
+  border-radius: 14px;
+  padding: 16px;
+}
+.title {
+  margin: 0 0 8px;
+}
+.grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.vod {
+  border: 1px solid #2a2a2e;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #141416;
+}
+.thumb {
+  position: relative;
+  padding-top: 56.25%;
+}
+.thumb iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.meta {
+  padding: 10px;
+}
+.vodTitle {
+  font-weight: 700;
+  font-size: 14px;
+}
+.tags {
+  color: #c9c9cf;
+  font-size: 12px;
+}
