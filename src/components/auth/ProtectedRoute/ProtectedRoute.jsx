@@ -1,29 +1,17 @@
-import { useEffect, useState } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
-/**
- * Guard mínima: revisa el role guardado en localStorage.
- * role = "any" -> deja pasar a cualquiera logueado
- * role = "staff" -> sólo staff (owner, coach, analyst, content)
- */
-export default function ProtectedRoute({ role = "any", children }) {
-  const [allowed, setAllowed] = useState(false);
+export default function ProtectedRoute({ children, role = "any" }) {
+  const { user, ready } = useAuth();
+  const location = useLocation();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("session_user") || "null");
-    if (!user) {
-      window.location.href = "/login";
-      return;
-    }
-    if (role === "staff") {
-      const ok = ["owner", "coach", "analyst", "content"].includes(user.role);
-      if (!ok) {
-        window.location.href = "/";
-        return;
-      }
-    }
-    setAllowed(true);
-  }, [role]);
+  if (!ready) return null;
 
-  if (!allowed) return null;
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+
+  if (role === "staff" && user.role !== "staff" && user.role !== "owner") {
+    return <Navigate to="/dashboard/player" replace />;
+  }
+
   return children;
 }

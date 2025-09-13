@@ -1,0 +1,26 @@
+[
+  {
+    "id": "vod-1",
+    "title": "Scrim Kotox – mid-round calls - 27 mayo",
+    "summary": "Min 07:13 rotación tardía; revisar timing de utilidad.",
+    "map": "Ascent",
+    "team": "Radiant Shadows",
+    "tags": ["mid-round", "rotaciones"],
+    "url": "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+    "isPrivate": false,
+    "ownerIds": [],
+    "hidden": false
+  },
+  {
+    "id": "vod-2",
+    "title": "Scrim toyo – retakes - 10 agosto",
+    "summary": "Toomen deja de adelantar, gracias",
+    "map": "Lotus",
+    "team": "Radiant Shadows",
+    "tags": ["mid-round", "rotaciones"],
+    "url": "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+    "isPrivate": false,
+    "ownerIds": [],
+    "hidden": false
+  }
+]

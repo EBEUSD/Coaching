@@ -1,0 +1,260 @@
+.page {
+  width: 100%;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 28px auto 80px;
+  padding: 0 28px;
+}
+
+.header {
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.06;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  color: #cfcfd2;
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 12px;
+  color: #d6d6d9;
+  border: 1px solid #2a2a2e;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.body {
+  display: grid;
+  gap: 16px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+  padding-bottom: 2rem;
+}
+
+.btnSup{
+  padding: 1rem 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ff7a00 0%, #ff5a00 100%);
+  color: #fff;
+  font-weight: 800;
+  border: 0;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(255, 106, 0, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.btn:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* Bloques/secciones */
+.block {
+  border: 1px solid #1f1f23;
+  background: linear-gradient(180deg, #161618 0%, #101012 100%);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.h2 {
+  font-size: 26px;
+  line-height: 1.2;
+  color: #fff;
+  font-weight: 900;
+  margin: 4px 0 14px;
+  position: relative;
+}
+.h2::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff7a1a, #ff4d00);
+  opacity: 0.9;
+}
+
+.h3 {
+  font-size: 18px;
+  color: #ffe4d6;
+  font-weight: 800;
+  margin: 14px 0 8px;
+}
+
+.ul {
+  margin: 6px 0 12px 0;
+  padding-left: 18px;
+  color: #e9e9ea;
+  line-height: 1.65;
+}
+.ul li {
+  margin: 6px 0;
+  list-style: none;
+  position: relative;
+  padding-left: 14px;
+}
+.ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #ff7a1a;
+  box-shadow: 0 0 0 2px rgba(255, 122, 26, 0.18);
+}
+
+/* Grid para contenido + ejemplos/callouts */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+}
+
+/* Callouts */
+.callout {
+  border: 1px solid #232329;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 12px;
+  color: #e9e9ea;
+}
+.callout strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.callout.ok {
+  border-color: rgba(0, 200, 120, 0.28);
+  background: rgba(0, 200, 120, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(0, 200, 120, 0.08);
+}
+
+.callout.warn {
+  border-color: rgba(255, 120, 80, 0.3);
+  background: rgba(255, 120, 80, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 120, 80, 0.08);
+}
+
+.callout.info {
+  border-color: rgba(120, 160, 255, 0.3);
+  background: rgba(120, 160, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(120, 160, 255, 0.08);
+}
+
+/* Checklist */
+.checklist {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+.checklist label {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: 10px;
+  color: #e9e9ea;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #222227;
+  background: rgba(255, 255, 255, 0.02);
+}
+.checklist input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff6a00;
+}
+
+/* Markdown fallback (por si un teórico no tiene componente custom) */
+.md {
+  color: #e9e9ea;
+  line-height: 1.7;
+  font-size: 16px;
+}
+.md h2 {
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  margin: 14px 0 8px;
+}
+.md h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffe4d6;
+  margin: 12px 0 8px;
+}
+.md ul {
+  padding-left: 20px;
+  margin: 8px 0 12px;
+}
+.md li {
+  margin: 6px 0;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .title {
+    font-size: 38px;
+  }
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .wrap {
+    padding: 0 18px;
+  }
+  .title {
+    font-size: 34px;
+  }
+  .block {
+    padding: 14px;
+  }
+  .h2 {
+    font-size: 22px;
+  }
+  .h3 {
+    font-size: 16px;
+  }
+  .md {
+    font-size: 15.5px;
+  }
+}

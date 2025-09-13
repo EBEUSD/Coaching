@@ -1,0 +1,11 @@
+[
+  {
+    "id": "ta_aim_01",
+    "title": "Rutina de aim – Kovaak + Range",
+    "description": "30' tracking + 20' click-timing. Reportar progresos.",
+    "status": "todo",
+    "dueDate": null,
+    "tags": ["aim"],
+    "ownerIds": ["u_jugador1","u_ebeus"]
+  }
+]

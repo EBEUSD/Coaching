@@ -1,37 +1,59 @@
 import { useState } from "react";
-import s from "./Login.module.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import styles from "./Login.module.css";
 
 export default function Login() {
-  const [u, setU] = useState("");
-  const [p, setP] = useState("");
+  const { signIn } = useAuth();
+  const nav = useNavigate();
+  const loc = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function submit(e) {
+  const handle = async (e) => {
     e.preventDefault();
     setErr("");
-    if (!u || !p) return setErr("Completá usuario y contraseña.");
-    if (u === "player" && p === "1234") {
-      localStorage.setItem("session_user", JSON.stringify({ id: "player", role: "player" }));
-      window.location.href = "/dashboard/player";
-      return;
+    setLoading(true);
+    try {
+      await signIn(email.trim(), password);
+      const next = loc.state?.from?.pathname || "/biblioteca";
+      nav(next, { replace: true });
+    } catch {
+      setErr("Credenciales inválidas.");
+    } finally {
+      setLoading(false);
     }
-    if (u === "staff" && p === "1234") {
-      localStorage.setItem("session_user", JSON.stringify({ id: "staff", role: "coach" }));
-      window.location.href = "/dashboard/staff";
-      return;
-    }
-    setErr("Credenciales inválidas.");
-  }
+  };
 
   return (
-    <section className={s.wrap}>
-      <h2 className={s.title}>Ingresar</h2>
-      <form className={s.form} onSubmit={submit}>
-        <input className={s.input} placeholder="Usuario" value={u} onChange={e=>setU(e.target.value)} />
-        <input className={s.input} type="password" placeholder="Contraseña" value={p} onChange={e=>setP(e.target.value)} />
-        {err && <p className={s.error}>{err}</p>}
-        <button className={s.btn} type="submit">Entrar</button>
+    <div className={styles.wrap}>
+      <h2 className={styles.title}>Ingresar</h2>
+      <form className={styles.form} onSubmit={handle}>
+        <label className={styles.label}>Email</label>
+        <input
+          className={styles.input}
+          type="email"
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label className={styles.label}>Contraseña</label>
+        <input
+          type="password"
+          className={styles.input}
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        {err && <div className={styles.error}>{err}</div>}
+        <button className={styles.button} disabled={loading}>
+          {loading ? "Ingresando..." : "Entrar"}
+        </button>
       </form>
-    </section>
+    </div>
   );
 }

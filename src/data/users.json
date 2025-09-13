@@ -1,0 +1,5 @@
+[
+  { "id": "u_ebeus", "name": "Ebeus", "username": "ebeus", "pin": "1234", "role": "owner" },
+  { "id": "u_jugador1", "name": "Jugador 1", "username": "jugador1", "pin": "5678", "role": "player" },
+  { "id": "u_staff", "name": "Entrenador", "username": "staff", "pin": "9999", "role": "staff" }
+]
