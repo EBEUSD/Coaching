@@ -1,65 +1,70 @@
-// src/context/AuthContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
-import { signInWithEmailAndPassword, signOut as fbSignOut, onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../firebase/Firebase";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut as fbSignOut,
+} from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../firebase/Firebase"; // <-- tu config
 
 const AuthContext = createContext(null);
+
+const STORAGE_KEY = "coach_user";
+
+const formatUser = (fbUser, profile) => {
+  const name =
+    profile?.displayName ||
+    fbUser?.displayName ||
+    (fbUser?.email ? fbUser.email.split("@")[0] : "usuario");
+  const role = profile?.role || "player";
+  return {
+    id: fbUser.uid,
+    name,
+    role,
+    email: fbUser.email || "",
+  };
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        // Buscar datos en Firestore
-        const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          const safeUser = {
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            displayName: userData.displayName || firebaseUser.email,
-            role: userData.role || "player",
-          };
-          setUser(safeUser);
-          localStorage.setItem("coach_user", JSON.stringify(safeUser));
-        } else {
-          console.warn("No existe documento en Firestore para este usuario");
-        }
-      } else {
+    const unsub = onAuthStateChanged(auth, async (fbUser) => {
+      if (!fbUser) {
         setUser(null);
-        localStorage.removeItem("coach_user");
+        localStorage.removeItem(STORAGE_KEY);
+        setReady(true);
+        return;
       }
-      setReady(true);
+      try {
+        const snap = await getDoc(doc(db, "users", fbUser.uid));
+        const profile = snap.exists() ? snap.data() : null;
+        const u = formatUser(fbUser, profile);
+        setUser(u);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(u));
+      } finally {
+        setReady(true);
+      }
     });
-
-    return () => unsubscribe();
+    return () => unsub();
   }, []);
 
   const signIn = async (email, password) => {
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    const userDoc = await getDoc(doc(db, "users", cred.user.uid));
-    if (!userDoc.exists()) throw new Error("No se encontraron datos de usuario en Firestore");
-
-    const userData = userDoc.data();
-    const safeUser = {
-      uid: cred.user.uid,
-      email: cred.user.email,
-      displayName: userData.displayName || cred.user.email,
-      role: userData.role || "player",
-    };
-
-    setUser(safeUser);
-    localStorage.setItem("coach_user", JSON.stringify(safeUser));
-    return safeUser;
+    const fbUser = cred.user;
+    const snap = await getDoc(doc(db, "users", fbUser.uid));
+    const profile = snap.exists() ? snap.data() : null;
+    const u = formatUser(fbUser, profile);
+    setUser(u);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(u));
+    return u;
   };
 
   const signOut = async () => {
     await fbSignOut(auth);
     setUser(null);
-    localStorage.removeItem("coach_user");
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   return (

@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import app from "./styles/App.module.css";
-
-import SharedHeader from "./components/layout/sharedHeader/SharedHeader.jsx";
+import Navbar from "./components/navbar/Navbar.jsx";
 import ProtectedRoute from "./components/auth/ProtectedRoute/ProtectedRoute.jsx";
 import Hero from "./components/layout/Hero/Hero.jsx";
 
@@ -12,15 +11,22 @@ import Biblioteca from "./routes/Biblioteca/Biblioteca.jsx";
 import Teorico from "./routes/Biblioteca/Teorico.jsx";
 import Vods from "./routes/Vods/Vods.jsx";
 import Tareas from "./routes/Tareas/Tareas.jsx";
+import AdminUsers from "./routes/AdminUsers/AdminUsers.jsx";
 
+import MatchesPage from "./routes/Matches/MatchesPage.jsx"; 
 import { AuthProvider } from "./context/AuthContext.jsx";
+
+function MatchesPageByParam() {
+  const { teamId } = useParams();
+  return <MatchesPage teamId={teamId} />;
+}
 
 export default function App() {
   return (
     <div className={app.app}>
       <AuthProvider>
         <BrowserRouter>
-          <SharedHeader />
+          <Navbar />
           <main className={`${app.main} ${app.container}`}>
             <Routes>
               <Route path="/" element={<Hero />} />
@@ -76,6 +82,33 @@ export default function App() {
                 element={
                   <ProtectedRoute role="any">
                     <Tareas />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* NUEVAS RUTAS: Partidas / Matches */}
+              <Route
+                path="/matches"
+                element={
+                  <ProtectedRoute role="staff">
+                    <MatchesPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/matches/:teamId"
+                element={
+                  <ProtectedRoute role="staff">
+                    <MatchesPageByParam />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/admin/usuarios"
+                element={
+                  <ProtectedRoute role="owner">
+                    <AdminUsers />
                   </ProtectedRoute>
                 }
               />

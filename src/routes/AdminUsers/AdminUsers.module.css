@@ -1,0 +1,185 @@
+/* ====== Layout ====== */
+.page {
+  max-width: 960px;
+  margin: 28px auto 90px;
+  padding: 0 16px;
+  color: #e9eaef;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+/* ====== Form ====== */
+.form {
+  border: 1px solid #23232a;
+  background: linear-gradient(180deg, #15161a 0%, #0f1014 100%);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.42);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.input,
+.select,
+.selectMini {
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid #2a2a31;
+  background: #0f1014;
+  color: #e9eaef;
+  padding: 0 12px;
+  outline: none;
+  transition: border .15s ease, box-shadow .15s ease, background .2s ease;
+}
+
+.input::placeholder { color: #8c9099; }
+
+.input:focus,
+.select:focus,
+.selectMini:focus {
+  border-color: #ff6a00;
+  box-shadow: 0 0 0 3px rgba(255,106,0,.18);
+}
+
+.selectMini { max-width: 160px; }
+.select { min-width: 240px; }
+
+.btn {
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 0;
+  background: #ff6a00;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(255,106,0,.28), inset 0 -1px 0 rgba(0,0,0,.35);
+  transition: transform .06s ease, filter .15s ease;
+}
+
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn:active { transform: translateY(0); filter: brightness(.98); }
+
+.hint {
+  opacity: .78;
+  font-size: 12px;
+  margin: 8px 4px 0;
+}
+
+/* ====== Listado ====== */
+.list { margin-top: 22px; }
+.subtitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #23232a;
+  background: #121318;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-weight: 900;
+  color: #fff;
+}
+
+.meta {
+  font-size: 13px;
+  color: #cfd3da;
+  opacity: .9;
+  margin-top: 4px;
+}
+
+/* Rol pill */
+.role {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 1px solid transparent;
+  font-weight: 800;
+}
+
+.role_player {
+  color: #8fb2ff;
+  background: rgba(143,178,255,.12);
+  border-color: rgba(143,178,255,.24);
+}
+
+.role_staff {
+  color: #ffd36c;
+  background: rgba(255,211,108,.12);
+  border-color: rgba(255,211,108,.25);
+}
+
+.role_owner {
+  color: #ff9a3c;
+  background: rgba(255,154,60,.12);
+  border-color: rgba(255,154,60,.25);
+}
+
+/* Acciones */
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.btnDanger {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,82,82,.3);
+  background: rgba(255,82,82,.12);
+  color: #ff6b6b;
+  font-weight: 800;
+  transition: filter .15s ease, transform .06s ease;
+}
+.btnDanger:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btnDanger:active { transform: translateY(0); }
+
+.btnGhost {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #2a2a31;
+  background: #14151a;
+  color: #e9eaef;
+  font-weight: 700;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 760px) {
+  .row { grid-template-columns: 1fr; }
+  .selectMini { max-width: none; }
+  .title { font-size: 28px; }
+}

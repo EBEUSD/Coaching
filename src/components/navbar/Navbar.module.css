@@ -1,0 +1,172 @@
+.header {
+  background: #0d0d0f;
+  border-bottom: 1px solid #1f1f23;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: #ff6a00;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Link base */
+.link {
+  color: #e9e9ea;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #ff6a00;
+  transition: width 0.25s ease;
+}
+
+.link:hover {
+  color: #ff6a00;
+}
+
+.link:hover::after {
+  width: calc(100% - 20px);
+}
+
+/* Estado activo: subrayado + pill naranja suave */
+.active {
+  color: #0a0a0b;
+  background: #ff7a00; /* pill */
+  box-shadow: 0 1px 0 #ff7a00;
+}
+
+.active::after {
+  width: calc(100% - 20px);
+}
+
+.active:hover {
+  color: #fff;
+
+}
+
+/* CTA coherente con el resto */
+.cta {
+  background: transparent;
+  border: 1px solid #ff6a00;
+  color: #ff6a00;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: transform 0.1s ease, filter 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  background: rgba(255, 106, 0, 0.1);
+}
+
+/* CTA cuando está activa (página actual) */
+.ctaActive {
+  background: #ff7a00;
+  color: #0a0a0b;
+  border-color: #ff7a00;
+}
+
+/* User area */
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userTag {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.logoutBtn {
+  background: #2a2a2e;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: #3a3a3f;
+}
+
+/* Burger */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.burger span {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: #111;
+    padding: 16px;
+    gap: 12px;
+    display: none;
+  }
+
+  .open {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .active, .ctaActive {
+    box-shadow: none;
+  }
+}

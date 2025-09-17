@@ -16,7 +16,7 @@ export default function Hero() {
             Entrena con <span className={styles.gradient}>estructura</span> y claridad
           </h1>
           <p className={styles.subtitle}>
-            Plataforma personal para organizar teóricos, VODs y tareas de forma privada.
+            Plataforma para organizar teóricos, VODs y tareas de forma privada.
           </p>
 
           {!user && (
@@ -45,21 +45,21 @@ export default function Hero() {
           <div className={styles.iconBox}><FaBook className={styles.icon} /></div>
           <div>
             <h3 className={styles.featureTitle}>Teóricos</h3>
-            <p className={styles.featureText}>Organiza y revisa el contenido de forma clara y ordenada.</p>
+            <p className={styles.featureText}>Contenido claro y ordenado.</p>
           </div>
         </div>
         <div className={styles.feature}>
           <div className={styles.iconBox}><FaVideo className={styles.icon} /></div>
           <div>
             <h3 className={styles.featureTitle}>VOD Review</h3>
-            <p className={styles.featureText}>Analiza partidas y sesiones con feedback estructurado.</p>
+            <p className={styles.featureText}>Analiza partidas con feedback.</p>
           </div>
         </div>
         <div className={styles.feature}>
           <div className={styles.iconBox}><FaTasks className={styles.icon} /></div>
           <div>
             <h3 className={styles.featureTitle}>Tareas</h3>
-            <p className={styles.featureText}>Define objetivos y haz seguimiento privado de tu progreso.</p>
+            <p className={styles.featureText}>Objetivos y seguimiento privado.</p>
           </div>
         </div>
       </div>

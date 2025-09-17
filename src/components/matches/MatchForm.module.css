@@ -1,0 +1,87 @@
+.form {
+  background: #0f1115;
+  border: 1px solid #1f2330;
+  padding: 16px;
+  border-radius: 16px;
+  display: grid;
+  gap: 16px;
+}
+.form h2 {
+  margin: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.group {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field > span {
+  font-size: 12px;
+  color: #aeb4c0;
+}
+.field input,
+.field select {
+  background: #141826;
+  border: 1px solid #262b3a;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #e8ecf7;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  background: #141826;
+  border: 1px solid #262b3a;
+  padding: 8px;
+  border-radius: 10px;
+}
+.chip {
+  background: #20263a;
+  border: 1px solid #2f3650;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #e8ecf7;
+  cursor: pointer;
+}
+.chips input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e8ecf7;
+}
+
+.submit {
+  background: linear-gradient(135deg, #ff7a00, #ff9a3c);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #0a0d18;
+  font-weight: 700;
+  cursor: pointer;
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
